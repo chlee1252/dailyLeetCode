@@ -1,4 +1,4 @@
-def oddEvenList(self, head: ListNode) -> ListNode:
+def oddEvenList(self, head):
         if not head: return head
         even = head.next
         odd = head
