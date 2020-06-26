@@ -1,5 +1,5 @@
 class Solution:
-    def findDuplicate(self, nums: int) -> int:
+    def findDuplicate(self, nums: [int]) -> int:
         left, right = 1, len(nums) - 1
         while left < right : 
             mid = left + (right - left) // 2
