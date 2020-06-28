@@ -1,3 +1,5 @@
+from math import sqrt
+
 class Solution:
     def numSquares(self, n: int) -> int:
         while( n % 4 == 0 ):	# Reduction by factor of 4
