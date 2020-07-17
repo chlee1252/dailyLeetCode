@@ -1,3 +1,3 @@
 class Solution:
-    def reverseWords(self, s: str) -> str:
-        return ' '.join(s.split()[::-1])
+    def pow(self, x: float, n: int) -> float:
+        return x ** n
