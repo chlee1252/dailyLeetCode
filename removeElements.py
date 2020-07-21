@@ -5,9 +5,8 @@ class ListNode:
 
 class Solution:
   def removeElements(self, head: ListNode, val: int) -> ListNode:
-    dummy = prev = ListNode()
+    dummy = prev = ListNode(-1)
     dummy.next = head
-
     while head:
       if head.val == val:
         prev.next = head.next
