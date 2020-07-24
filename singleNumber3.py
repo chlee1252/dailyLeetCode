@@ -1,6 +1,6 @@
 from functools import reduce
 class Solution:
-    def singleNumber(self, nums: List[int]) -> List[int]:
+    def singleNumber(self, nums: [int]) -> [int]:
 
         AXORB = reduce(lambda x, y: x^y, nums)
         mask = AXORB & -AXORB
