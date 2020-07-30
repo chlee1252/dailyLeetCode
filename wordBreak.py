@@ -1,5 +1,5 @@
 class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+    def wordBreak(self, s: str, wordDict: [str]) -> [str]:
         wordSet = set(wordDict)
         n = len(s)
         dp_solution = [[] for _ in range(n)] + [[""]]
