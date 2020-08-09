@@ -1,5 +1,5 @@
 class Solution:
-    def orangesRotting(self, grid: List[List[int]]) -> int:
+    def orangesRotting(self, grid: [[int]]) -> int:
         queue = []
         fresh_cut = 0
         
