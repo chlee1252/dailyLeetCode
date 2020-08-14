@@ -1,5 +1,3 @@
-import math
-
 class TreeNode:
   def __init__(self, val: int, left=None, right=None):
     self.left = left
