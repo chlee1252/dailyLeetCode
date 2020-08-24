@@ -13,13 +13,13 @@ class Solution:
     
     # Approach 1: Recursive
     self.result = 0
-    def dfs(root: TreeNode, left: bool) -> None:
+    def dfs(root: TreeNode, isLeft: bool) -> None:
       if not root:
         return
       
-      if not root.left and not root.right and left:
+      if not root.left and not root.right and isLeft:
         self.result += root.val
-      
+
       dfs(root.left, True)
       dfs(root.right, False)
 
