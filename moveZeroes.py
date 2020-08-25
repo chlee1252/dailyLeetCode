@@ -7,5 +7,5 @@ class Solution:
         lastNoneZeroIndex += 1
     
     for i in range(lastNoneZeroIndex, len(nums)):
-      nums[lastNoneZeroIndex] = 0
+      nums[i] = 0
   
