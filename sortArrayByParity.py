@@ -1,5 +1,6 @@
 class Solution:
     def sortArrayByParity(self, A: [int]) -> [int]:
+        # Approach 1
         beg, end = 0, len(A) - 1
         
         while beg <= end:
@@ -9,3 +10,8 @@ class Solution:
                 A[beg], A[end] = A[end], A[beg]
                 end -= 1
         return A
+
+        # Approach 2
+        # A.sort(key=lambda a: a % 2)
+        # return A
+
