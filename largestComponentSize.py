@@ -1,3 +1,5 @@
+from collections import defaultdict, Counter
+
 class DSU:
     def __init__(self, N):
         self.p = list(range(N))
@@ -18,7 +20,7 @@ class Solution:
                 return self.primes_set(n//i) | set([i])
         return set([n])
 
-    def largestComponentSize(self, A: List[int]) -> int:
+    def largestComponentSize(self, A: [int]) -> int:
         n = len(A)
         UF = DSU(n)
         primes = defaultdict(list)
