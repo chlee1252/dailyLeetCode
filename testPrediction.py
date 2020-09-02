@@ -18,9 +18,5 @@ class Solution:
 
     return [k for k, v in person.items() if v == maximum]
 
-  
-s = Solution().solution([1,2,3,4,5])
-
-print(s)
 
 
