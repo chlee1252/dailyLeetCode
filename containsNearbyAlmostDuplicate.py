@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 class Solution:
-    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+    def containsNearbyAlmostDuplicate(self, nums: [int], k: int, t: int) -> bool:
         if k < 1 or t < 0:
             return False
         dic = OrderedDict()
