@@ -1,5 +1,5 @@
 class Solution:
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+    def combinationSum3(self, k: int, n: int) -> [[int]]:
         ret = []
         self.dfs(list(range(1, 10)), k, n, [], ret)
         return ret
