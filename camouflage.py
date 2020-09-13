@@ -1,4 +1,5 @@
 from collections import defaultdict, Counter
+from functools import reduce
 
 def solution(clothes):
   # Approach 1: use defaultdict
