@@ -3,7 +3,7 @@ def solution(N, M, K, array):
   answer = 0
 
   continuous = 0
-  for i in range(M):
+  for _ in range(M):
       if continuous == K:
         answer += array[N-2]
         continuous = 0
