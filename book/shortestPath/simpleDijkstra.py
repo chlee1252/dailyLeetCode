@@ -2,6 +2,8 @@
 # 단계마다 '방문하지 않은 노드 중에서 최단 거리가 가장 짧은 노드를 선택'하기 위해
 # 매 단계마다 1차원 리스트의 모든 원소를 확인한다.
 
+# 시간 복잡도: O(V^2)
+
 import sys
 input = sys.stdin.readline
 inf = float("inf")
