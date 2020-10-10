@@ -1,75 +1,78 @@
-from collections import deque
 import sys
-
-input = sys.stdin.readline
-moves = [(1,0), (-1,0), (0, 1), (0,-1)]
-DEL = "DEL"
-
-n, m, t = map(int, input().split())
-q = [deque([0]) for _ in range(n+1)]
-for i in range(1, n+1):
-    numbers = list(map(int, input().split()))
-    for n in numbers:
-        q[i].append(n)
-
-# print(q[4])
-
-def solve(i, j):
-    queue = deque([(i, j)])
-    visited = [[False] * (m+1) for _ in range(n+1)]
-    visited[i][j] = True
-    adj = False
-
-    while queue:
-        x, y = queue.popleft()
-
-        for move in moves:
-            nx, ny = move[0]+x, move[1]+y
-            if nx < 1 or ny < 1 or nx > n or ny > m or visited[nx][ny]:
-                continue
-            
-            visited[nx][ny] = True
-            if q[x][y] == q[nx][ny]:
-                q[x][y] = DEL
-                q[nx][ny] = DEL
-                adj = True
+from collections import deque
+read = sys.stdin.readline
+ 
+# 상 하 좌 우
+drdc = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+ 
+N, M, T = map(int, read().split())
+circle = [deque([0 for _ in range(M)])]
+for _ in range(N):
+    circle.append(deque(map(int, read().split())))
+circle.append(deque([0 for _ in range(M)]))
+x = []
+d = []
+k = []
+ 
+for _ in range(T):
+    # d가 0인 경우는 시계 방향, 1인 경우는 반시계 방향이다.
+    X, D, K = map(int, read().split())
+    x.append(X)
+    d.append(D)
+    k.append(K)
+ 
+#print(circle)
+for index in range(T):
+    X, D, K = x[index], d[index], k[index]
+    tx = X
+ 
+    while tx <= N:
+        for _ in range(K):
+            if D == 0:
+                circle[tx].appendleft(circle[tx].pop())
             else:
-                queue.append((nx, ny))
-    print(q)
-    if not adj:
-        average = 0
-        total = 0
-        for i in range(1, n+1):
-            for j in range(1, m+1):
-                if q[i][j] != DEL:
-                    average += q[i][j]
-                    total += 1
-        
-    else:
-        result = 0
-        for i in range(1, n+1):
-            for j in range(1, m+1):
-                if q[i][j] != DEL:
-                    result += q[i][j]
-        
-        print(result)
-
-for _ in range(t):
-    x, d, k = map(int, input().split())
-    for i in range(1, len(q)):
-        if i % x == 0:
-            k = k if d == 0 else -k
-            q[i].rotate(k)
-    solve(1,1)
-
-
-
-# for _ in range(t):
-#     x, d, k = map(int, input().split())
-
-#     for i in range(1, len(q)+1):
-#         if i % x == 0:
-#             k = k if d == 0 else -k
-#             q[i-1] = q[i-1].rotate(k)
-    
-#     print(q)
+                circle[tx].append(circle[tx].popleft())
+        tx += X
+    flag = True
+    sumVal = 0
+    cntVal = 0
+    for r in range(1, N+1):
+        for c in range(M):
+            if circle[r][c] <= 0:
+                continue
+            sumVal += circle[r][c]
+            cntVal += 1
+ 
+            for i in range(4):
+                nr, nc = r + drdc[i][0], c + drdc[i][1]                
+                if nc == -1:
+                    nc = M-1
+                elif nc == M:
+                    nc = 0
+ 
+                if circle[r][c] == abs(circle[nr][nc]):
+                    circle[r][c] *= -1
+                    if circle[nr][nc] > 0:
+                        circle[nr][nc] *= -1
+                    flag = False
+    for r in range(1, N+1):
+        for c in range(M):
+            if circle[r][c] < 0:
+                circle[r][c] = 0
+ 
+    if flag and cntVal > 0:
+        avgVal = sumVal/cntVal
+        for r in range(1, N+1):
+            for c in range(M):
+                if circle[r][c] == 0:
+                    continue
+                if circle[r][c] > avgVal:
+                    circle[r][c] -= 1
+                elif circle[r][c] < avgVal:
+                    circle[r][c] += 1
+ 
+ans = 0
+for r in range(1, N+1):
+    for c in range(M): 
+        ans += circle[r][c]
+print(ans) 
