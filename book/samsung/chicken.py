@@ -1,38 +1,38 @@
+# 완전 탐색으로 풀기
+
 from itertools import combinations
 
 n, m = map(int, input().split())
-chicken = []
-maps = []
 
-def calc_distance(r1, r2, c1, c2):
-    return abs(r1-r2) + abs(c1-c2)
+town = []
+chicken_pos = []
 
 for _ in range(n):
-    maps.append(list(map(int, input().split())))
+    town.append(list(map(int, input().split())))
 
 for i in range(n):
     for j in range(n):
-        if maps[i][j] == 2:
-            chicken.append((i, j))
-            maps[i][j] = 0
+        if town[i][j] == 2:
+            chicken_pos.append((i,j))
 
-combo = list(combinations(chicken, m))
+def calc_distance(x1, x2, y1, y2):
+    return abs(x1-x2) + abs(y1-y2)
 
-minDist = float('inf')
-for i in range(len(combo)):
-    distance = 0
-    for c in range(n):
-        for r in range(m):
-            if maps[c][r] == 1:
-                tmp = float('inf')
-                for j in range(m):
-                    tmp = min(tmp, calc_distance(r, combo[i][j][1], c, combo[i][j][0]))
-                distance += tmp
+result = list(combinations(chicken_pos, m))
+
+cur_dist = float('inf')
+for chicken in result:
+    dist = 0
+    for i in range(n):
+        for j in range(n):
+            tmp_dist = float('inf')
+            if town[i][j] == 1:
+                for c in chicken:
+                    cx, cy = c
+                    tmp_dist = min(tmp_dist, calc_distance(i, cx, j, cy))
+                dist += tmp_dist
     
-    minDist = min(minDist, distance)
+    cur_dist = min(dist, cur_dist)
 
-print(minDist)
-
-
-
+print(cur_dist)
 
