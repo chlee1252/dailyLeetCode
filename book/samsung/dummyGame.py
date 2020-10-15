@@ -15,8 +15,8 @@ direc_count = int(input())
 direc = deque([])
 tail = [0,0]
 
-move = {1: (0,1), 2: (-1,0), 3: (0,-1), 4:(1,0)}
-cur_move = 1
+move = {0: (0,1), 1: (-1,0), 2: (0,-1), 3:(1,0)}
+cur_move = 0
 
 # 뱀=1 사과='apple' 빈공간=0
 for _ in range(direc_count):
@@ -30,15 +30,9 @@ while True:
     if direc and answer == direc[0][0]:
         new_direc = direc.popleft()
         if new_direc[1] == 'L':
-            if cur_move + 1 == 5:
-                cur_move = 1
-            else:
-                cur_move += 1
+            cur_move = (cur_move+1) % 4
         elif new_direc[1] == 'D':
-            if cur_move - 1 == 0:
-                cur_move = 4
-            else:
-                cur_move -= 1
+            cur_move = (cur_move-1) % 4
     
     # 방향에 따라서 좌표 계산
     ni, nj = move[cur_move][0]+i, move[cur_move][1]+j
