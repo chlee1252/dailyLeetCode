@@ -9,10 +9,9 @@ def solution(prices):
             answer[j-1] = newJ
         stack.append((prices[i-1], i))
     
-    if stack:
-        while stack:
-            p, i = stack.pop()
-            answer[i-1] = abs(n-i)
+    while stack:
+        p, i = stack.pop()
+        answer[i-1] = abs(n-i)
             
     return answer
 
